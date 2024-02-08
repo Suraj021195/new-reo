@@ -1,32 +1,24 @@
+
 {% load static %}
-<!doctype html>
-<html lang="ar" >
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-
-    <title>Employee Details</title>
-</head>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Employee</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/delete.css' %}">
+</head>
 <body>
-    <h1 align="center">Delete Employee</h1>
-    <div class="class="container text-left"">
-    
-      <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-  </ul>
-</div>
-</div>
-
-    <!-- Bootstrap JS (optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <h1>Delete Employee</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="employee">Select an employee to delete:</label>
+        <select name="id" id="id">
+            {% for employee in form %}
+            <option value="{{ employee.id }}">{{ employee.first_name}} {{employee.last_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Delete</button>
+    </form>
+</body>
 </html>

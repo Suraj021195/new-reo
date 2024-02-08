@@ -4,6 +4,11 @@ from .forms import employeeForm
 
 
 # Create your views here.
+
+def dashboard(request):
+    return render(request,"index.html")
+
+
 def employeedetails(request):
     if request.method =="POST":
         form = employeeForm(request.POST)
@@ -15,7 +20,7 @@ def employeedetails(request):
     return render(request,'Add_employee.html',{'form':form})
 
 def viewlist(request):
-    data =employee.objects.all().order_by('first_name')
+    data =employee.objects.all().order_by('-created')
     return render(request,"Employee_list.html",{'data':data})
 
 def edit(request,id):
@@ -29,4 +34,18 @@ def edit(request,id):
         form=employeeForm(instance=getdata)
     return render(request,'Add_employee.html',{'form':form})
         
-        
+
+# def delete(request,id):
+#     gatedata=employee.objects.get(id=id)
+#     gatedata.delete()
+#     return request(request,'Delete_employee',{'gatedata': gatedata})
+
+def delete(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        form = employee.objects.get(id=id)
+        form.delete()
+        return redirect('viewlist')  # Redirect to some URL after deletion
+    else:
+      form= employee.objects.all()
+      return render(request, 'delete_employee.html', {'form': form})

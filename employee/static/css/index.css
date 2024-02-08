@@ -1,0 +1,13 @@
+h1 {
+    color: #333; /* Text color */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+.container {
+    margin-top: 50px; /* Top margin */
+}
+
+.btn {
+    margin: 10px; /* Margin around buttons */
+}
+</style>

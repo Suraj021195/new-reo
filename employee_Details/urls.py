@@ -20,7 +20,9 @@ from employee import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.dashboard,name="index"),
     path('employee',views.employeedetails,name="employee"),
     path('viewlist',views.viewlist,name="viewlist"),
-    path('edit/<int:id>/',views.edit,name="edit")
+    path('edit/<int:id>/',views.edit,name="edit"),
+    path('delete',views.delete,name="delete")
 ]
